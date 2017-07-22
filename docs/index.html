@@ -1,0 +1,122 @@
+<!Doctype html>
+<html ng-app="utility" ng-controller="utilityController">
+    <head>
+        <title>
+            Pa-Compute
+        </title>
+        <link rel="manifest" href="manifest.json">
+        <script type="text/javascript">
+            console.error("\nBabala!\n\nAng parteng ito ay para lamang sa gumagawa ng site na ito!\n\n\nKung may nagpapunta sayo rito at ipinapalagay na kung ano man, maaring may makuhang mahalagang impormasyon sayo kagaya ng password at iba pa. Huwag itong gawin at ireport agad sa amin ang pangyayari.");
+            if('serviceWorker' in navigator){
+                window.addEventListener('load',function(){
+                    navigator.serviceWorker.register('serviceworker.js').then(function(registration){
+                        // Success
+                        console.log('Installed service worker with scope: ', registration.scope);
+                    }, function(err){
+                        // Error
+                        console.error('Error installing service worker: ', err);
+                    });
+                });
+            }
+        </script>
+        <script src="assets/js/angular.min.js"></script>
+        <script src="assets/js/app.js"></script>
+        <meta name="theme-color" content="#0277bd">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="assets/css/materialize.min.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <nav class="nav-extended light-blue darken-3">
+            <div class="nav-wrapper">
+                <a class="title">Pa-Compute</a>
+            </div>
+            <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="#tubig">Tubig</a></li>
+                    <li class="tab"><a href="#kuryente">Kuryente</a></li>
+                    <li class="tab"><a href="#info">Info</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="tubig">
+            <div class="container">
+                <h5 class="grey-text">Ilagay dito ang Dating Reading sa Metro</h5>
+                <div class="input-field">
+                    <input type="text" ng-model="tubigPreviousReading" id="tubigPreviousReading">
+                </div>
+                <br>
+                <h5 class="grey-text">Ilagay dito ang Bagong Reading sa Metro</h5>
+                <div class="input-field">
+                    <input type="text" ng-model="tubigCurrentReading" id="tubigCurrentReading">
+                </div>
+                <br>
+                <h5 class="grey-text">Ilagay dito kung Magkano ang Rate ng Tubig</h5>
+                <div class="input-field">
+                    <input type="text" ng-model="tubigRate" id="tubigRate">
+                </div>
+                <br><br>
+                <h5 class="grey-text">Ilagay kung Magkano Pa ang Iyong Balanse, Kung wala ay laktawan ito. Halimbawa, Kung ang iyong kulang ay P1,000.00 ilagay 1000.</h5>
+                <div class="input-field">
+                    <input type="text" ng-model="tubigBalance" id="tubigBalance">
+                </div>
+                <br><br>
+                <h4 class="light-blue-text text-darken-2">{{tubigResult}}</h4>
+                <br>
+                <a ng-click="tubigTotalAmountCompute()" class="btn btn-large light-blue darken-3 waves-effect waves-light">I-Compute</a>
+                <a ng-click="tubigClear()" class="btn btn-large blue-grey darken-2 waves-effect waves-light">Ulitin</a>
+                <br><br>
+                <p class="grey-text">Paalala lamang na hindi pa kasama ang ibang charges sa pag-compute ng iyong bill. Maaaring maging iba ng konti sa pinakabill na iyong matatanggap dahil sa estimation, pag-rround-off at pagkakalagay ng decimal point.</p>
+                <br><br><br>
+            </div>
+        </div>
+        <div id="kuryente">
+            <div class="container">
+                <h5 class="grey-text">Ilagay dito ang Dating Reading sa Metro</h5>
+                <div class="input-field">
+                    <input type="text" ng-model="kuryentePreviousReading" id="kuryentePreviousReading">
+                </div>
+                <br>
+                <h5 class="grey-text">Ilagay dito ang Bagong Reading sa Metro</h5>
+                <div class="input-field">
+                    <input type="text" ng-model="kuryenteCurrentReading" id="kuryenteCurrentReading">
+                </div>
+                <br>
+                <h5 class="grey-text">Ilagay dito kung Magkano ang Rate ng Kuryente</h5>
+                <div class="input-field">
+                    <input type="text" ng-model="kuryenteRate" id="kuryenteRate">
+                </div>
+                <br><br>
+                <h5 class="grey-text">Ilagay kung Magkano Pa ang Iyong Balanse, Kung wala ay laktawan ito. Halimbawa, Kung ang iyong kulang ay P1,000.00 ilagay 1000.</h5>
+                <div class="input-field">
+                    <input type="text" ng-model="kuryenteBalance" id="kuryenteBalance">
+                </div>
+                <br><br>
+                <h4 class="light-blue-text text-darken-2">{{kuryenteResult}}</h4>
+                <br>
+                <a ng-click="kuryenteTotalAmountCompute()" class="btn btn-large light-blue darken-3 waves-effect waves-light">I-Compute</a>
+                <a ng-click="kuryenteClear()" class="btn btn-large blue-grey darken-2 waves-effect waves-light">Ulitin</a>
+                <br><br>
+                    <p class="grey-text">Paalala lamang na hindi pa kasama ang ibang charges sa pag-compute ng iyong bill. Maaaring maging iba ng konti sa pinakabill na iyong matatanggap dahil sa estimation, pag-rround-off at pagkakalagay ng decimal point.</p>                
+                <br><br><br>
+            </div>
+        </div>
+        <div id="info">
+            <div class="container">
+                <h5 class="grey-text">Computation</h5>
+                <p>
+                Simple lamang ang proseso ng pag-cocompute:<br><br>
+                Step 1: Ibawas ang Previous Reading sa Current Reading.
+                Ito ang total na iyong nakonsumo.<br>
+                Step 2: I-multiply ang nakuhang sagot sa rate.
+                Kung wala ka nang dating balanse, ito na ang total na babayaran mo.<br>
+                Step 3: Kung may balanse, i-dagdag ang balanse sa nakuhang sagot sa step 2.
+                </p>
+                <br><br>
+                <br><br><br><br><br>
+            </div>
+        </div>
+    </body>
+</html>

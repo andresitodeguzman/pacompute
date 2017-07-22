@@ -1,0 +1,25 @@
+.title {
+    padding-left: 5%;
+    font-size: 15pt;
+    text-transform: bold;   
+}
+.container{
+    padding-top: 50px;
+}
+input{
+    font-size: 30pt !important;
+    color: #01579b;
+}
+/* label color */
+   .input-field label {
+     color: #01579b;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: #0277bd;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid #0277bd;
+     box-shadow: 0 1px 0 0 #0277bd;
+   }

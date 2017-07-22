@@ -1,0 +1,8 @@
+{
+    "short_name":"Pa-Compute",
+    "name":"Pa-Compute",
+    "start_url":"index.html",
+    "background_color":"#0277bd",
+    "display":"standalone",
+    "orientation":"portrait"
+}
